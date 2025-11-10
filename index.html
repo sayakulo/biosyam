@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bio Syam - Pil Hitam Ajaib</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .fade-in.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-left {
+            opacity: 0;
+            transform: translateX(-100px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .slide-left.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide-right {
+            opacity: 0;
+            transform: translateX(100px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .slide-right.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.8s ease-out;
+        }
+        
+        .scale-in.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #10b981, #059669);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #10b981;
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #10b981, #059669);
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+        }
+        
+        .card {
+            transition: all 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero-pattern {
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(5, 150, 105, 0.1) 0%, transparent 50%);
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <span class="text-2xl font-bold gradient-text">BIO SYAM</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#header" class="nav-link text-gray-700 hover:text-green-600 font-medium">Beranda</a>
+                    <a href="#section1" class="nav-link text-gray-700 hover:text-green-600 font-medium">Tentang</a>
+                    <a href="#section2" class="nav-link text-gray-700 hover:text-green-600 font-medium">Manfaat</a>
+                    <a href="#section3" class="nav-link text-gray-700 hover:text-green-600 font-medium">Testimoni</a>
+                    <a href="#section4" class="btn-primary text-white px-6 py-2 rounded-full font-semibold">Hubungi Kami</a>
+                </div>
+                <button class="md:hidden text-gray-700" id="menuBtn">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+			<!-- Mobile Menu -->
+<div id="mobileMenu" class="hidden md:hidden bg-white shadow-lg">
+  <div class="flex flex-col space-y-4 py-4 px-6">
+    <a href="#header" class="nav-link text-gray-700 hover:text-green-600 font-medium">Beranda</a>
+    <a href="#section1" class="nav-link text-gray-700 hover:text-green-600 font-medium">Tentang</a>
+    <a href="#section2" class="nav-link text-gray-700 hover:text-green-600 font-medium">Manfaat</a>
+    <a href="#section3" class="nav-link text-gray-700 hover:text-green-600 font-medium">Testimoni</a>
+    <a href="#section4" class="btn-primary text-white px-6 py-2 rounded-full font-semibold text-center">Hubungi Kami</a>
+  </div>
+</div>
+
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header id="header" class="pt-24 pb-16 hero-pattern">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-12">
+                <div class="flex-1 fade-in">
+                    <h1 class="text-5xl md:text-6xl font-bold text-gray-800 mb-6 leading-tight">
+                        Pil Hitam Ajaib <span class="gradient-text">Bio Syam</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8">Solusi Kesehatan Alami dari Alam untuk Kehidupan yang Lebih Berkualitas</p>
+                    <a href="#section1" class="btn-primary text-white px-8 py-4 rounded-full font-semibold inline-block text-lg">
+                        Pelajari Lebih Lanjut
+                    </a>
+                </div>
+                <div class="flex-1 slide-right">
+                    <img src="image/WhatsApp Image 2025-11-07 at 15.22.31.jpeg" alt="Bio Syam Product" class="w-full rounded-3xl shadow-2xl floating">
+                </div>
+            </div>
+        </div>
+    </header>
+<!-- Flash Sale Section -->
+<section id="flash-sale" class="bg-yellow-100 py-10">
+  <div class="container mx-auto px-6 text-center">
+    <h2 class="text-3xl font-bold text-gray-800 mb-4">🎉 Promo Spesial 1 Jam!</h2>
+    <p class="text-lg text-gray-700 mb-6">Dapatkan diskon eksklusif sebelum waktu habis!</p>
+
+    <!-- Countdown -->
+    <div id="countdown" class="text-4xl font-bold text-green-600 mb-8"></div>
+
+    <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+      <div class="bg-white p-6 rounded-2xl shadow-md border border-green-200">
+        <h3 class="text-2xl font-bold text-gray-800 mb-2">Beli 1</h3>
+        <p class="text-gray-500 line-through mb-1">Rp 500.000</p>
+        <p class="text-green-600 font-bold text-3xl mb-3">Rp 250.000</p>
+        <p class="text-sm text-gray-600">Diskon 50% (1 jam pertama)</p>
+		  <a href="https://wa.me/082164372980?text=Halo%20saya%20ingin%20pesan%20Coffee%20MOMI%20promo%2050%%20nya!"
+   target="_blank"
+   class="inline-block bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:from-green-600 hover:to-green-700 transform hover:scale-105 transition shadow-lg">
+     Pesan Sekarang!
+</a>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl shadow-md border border-green-200">
+        <h3 class="text-2xl font-bold text-gray-800 mb-2">Beli 2</h3>
+        <p class="text-gray-500 line-through mb-1">Rp 1.000.000</p>
+        <p class="text-green-600 font-bold text-3xl mb-3">Rp 400.000</p>
+        <p class="text-sm text-gray-600">Diskon 60% (1 jam pertama)</p>
+		  <a href="https://wa.me/082164372980?text=Halo%20saya%20ingin%20pesan%20Coffee%20MOMI%20promo%2050%%20nya!"
+   target="_blank"
+   class="inline-block bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:from-green-600 hover:to-green-700 transform hover:scale-105 transition shadow-lg">
+     Pesan Sekarang!
+</a>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl shadow-md border border-green-200">
+        <h3 class="text-2xl font-bold text-gray-800 mb-2">Beli 3</h3>
+        <p class="text-gray-500 line-through mb-1">Rp 1.500.000</p>
+        <p class="text-green-600 font-bold text-3xl mb-3">Rp 525.000</p>
+        <p class="text-sm text-gray-600">Diskon 65% (1 jam pertama)</p>
+		  <a href="https://wa.me/082164372980?text=Halo%20saya%20ingin%20pesan%20Coffee%20MOMI%20promo%2050%%20nya!"
+   target="_blank"
+   class="inline-block bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:from-green-600 hover:to-green-700 transform hover:scale-105 transition shadow-lg">
+     Pesan Sekarang!
+</a>
+      </div>
+    </div>
+  </div>
+</section>
+   <!-- Section 1: PIL HITAM AJAIB -->
+<section id="section1" class="py-20 bg-white">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-16 fade-in">
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+        PIL HITAM AJAIB <span class="gradient-text">BIO SYAM</span>
+      </h2>
+      <p class="text-xl text-gray-600">
+        Produk Unggulan dengan Segudang Manfaat Kesehatan
+      </p>
+    </div>
+
+    <!-- Bagian deskripsi + gambar berdampingan -->
+    <div class="grid md:grid-cols-2 gap-10 items-center mb-16">
+      <div class="slide-left">
+        <p class="text-lg text-gray-700 leading-relaxed mb-6">
+          Di balik kekuatan Marketing Plan, SSI25 didukung oleh produk Andalan yang luar biasa:
+          <strong class="text-green-600">Pil Hitam Ajaib Bio Syam</strong>. Ini bukan sekadar produk herbal biasa, melainkan formulasi istimewa dari bahan-bahan alami pilihan seperti
+          <strong>Habbatussauda, Madu Yaman, Delima, Buah Tin, Kurma Ajwa, Zafaran, Jahe, Sereh, Madu, dan Kayu Putih</strong>.
+        </p>
+        <p class="text-lg text-gray-700 leading-relaxed">
+          Kombinasi bahan-bahan berkualitas ini menjadikan Pil Hitam Ajaib Bio Syam sebagai solusi kesehatan yang sangat dicari, terutama bagi mereka yang memasuki usia paruh baya dengan berbagai keluhan kesehatan.
+        </p>
+      </div>
+
+      <div class="slide-right text-center">
+        <img src="image/WhatsApp Image 2025-11-07 at 15.22.32 (1).jpeg"
+             alt="Komposisi Bio Syam"
+             class="w-full md:w-11/12 rounded-3xl shadow-2xl mx-auto">
+      </div>
+    </div>
+
+    <!-- Dua card manfaat tetap seperti semula -->
+    <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+      <div class="card bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-2xl shadow-lg scale-in">
+        <div class="bg-green-600 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+        </div>
+        <h3 class="text-2xl font-bold text-gray-800 mb-4">Manfaat Utama</h3>
+        <ul class="space-y-3">
+          <li class="flex items-start"><span class="text-green-600 mr-2">✓</span><span class="text-gray-700">Membantu mengatasi masalah tulang, sendi, dan saraf</span></li>
+          <li class="flex items-start"><span class="text-green-600 mr-2">✓</span><span class="text-gray-700">Memperbaiki stamina dan sistem kekebalan tubuh</span></li>
+          <li class="flex items-start"><span class="text-green-600 mr-2">✓</span><span class="text-gray-700">Membantu mengatasi masalah asam urat</span></li>
+          <li class="flex items-start"><span class="text-green-600 mr-2">✓</span><span class="text-gray-700">Membantu penyembuhan penyakit stroke</span></li>
+          <li class="flex items-start"><span class="text-green-600 mr-2">✓</span><span class="text-gray-700">Membantu penyembuhan penyakit asma dan sinusitis</span></li>
+        </ul>
+      </div>
+
+      <div class="card bg-gradient-to-br from-emerald-50 to-green-50 p-8 rounded-2xl shadow-lg scale-in">
+        <div class="bg-emerald-600 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+          </svg>
+        </div>
+        <h3 class="text-2xl font-bold text-gray-800 mb-4">Manfaat Tambahan</h3>
+        <ul class="space-y-3">
+          <li class="flex items-start"><span class="text-green-600 mr-2">✓</span><span class="text-gray-700">Membantu meringankan penderita batuk dan radang tenggorokan</span></li>
+          <li class="flex items-start"><span class="text-green-600 mr-2">✓</span><span class="text-gray-700">Membantu menjaga kesehatan paru-paru</span></li>
+          <li class="flex items-start"><span class="text-green-600 mr-2">✓</span><span class="text-gray-700">Membantu merawat pembuluh arteri jantung</span></li>
+          <li class="flex items-start"><span class="text-green-600 mr-2">✓</span><span class="text-gray-700">Membantu meringankan penyakit diabetes</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+   <!-- Section 2: DAHSYATNYA MANFAAT -->
+<section id="section2" class="py-20 bg-gradient-to-br from-green-600 to-emerald-700 text-white">
+  <div class="container mx-auto px-6">
+    <!-- Judul + Gambar berdampingan -->
+    <div class="grid md:grid-cols-2 items-center gap-10 mb-16">
+      <div class="fade-in text-left">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">
+          DAHSYATNYA MANFAAT PIL AJAIB BIO SYAM
+        </h2>
+        <p class="text-xl text-green-100 mb-6">
+          SSI25 BEKERJA CEPAT MENGATASI KELUHAN DI BAWAH INI
+        </p>
+      </div>
+
+      <div class="slide-right text-center">
+        <img src="image/WhatsApp Image 2025-11-07 at 15.22.32 (1).jpeg"
+             alt="Bio Syam Composition"
+             class="w-full md:w-4/5 lg:w-3/4 rounded-3xl shadow-2xl border-4 border-white/20 mx-auto">
+      </div>
+    </div>
+
+    <!-- Daftar manfaat -->
+			<div class="grid md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-6xl mx-auto mb-12">
+			  <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+				<p class="font-semibold">1. Syaraf kejepit</p>
+			  </div>
+			  <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+				<p class="font-semibold">2. Pegal pegal</p>
+			  </div>
+			  <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+				<p class="font-semibold">3. Asam urat</p>
+			  </div>
+			  <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+				<p class="font-semibold">4. Batu ginjal</p>
+			  </div>
+			  <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+				<p class="font-semibold">5. Tangan kaku</p>
+			  </div>
+               
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">6. Lutut sakit</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">7. Sinusitis</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">8. Sariawan</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">9. Radang</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">10. Exim</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">11. Gagal ginjal</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">12. Kebas-kebas</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">13. Stroke</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">14. Asam lambung</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">15. Darah tinggi</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">16. Diabetes</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">17. Kolesterol</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">18. Nyeri sendi</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">19. Jantung bengkak</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">20. Batuk</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">21. Flu</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">22. Asma</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">23. Vertigo</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">24. Kaki gajah</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">25. Keracunan</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">26. Pengapuran</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">27. Rematik</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">28. Sakit gigi</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">29. Susah BAB</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">30. Pencegah kanker</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">31. Wasir</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">32. Alergi akut</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">33. Maag</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">34. Impoten</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">35. Leher kaku</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">36. Pinggang sakit</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">37. Daya tahan tubuh</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">38. Anti virus, bakteri, parasit</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">39. Kejang-kejang</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">40. Batu empedu</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">41. Migrain</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">42. Sesak nafas</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">43. Kista</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">44. Tumor</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl hover:bg-white/20 transition-all scale-in">
+                    <p class="font-semibold">45. Dan lainnya</p>
+                </div>
+            </div>
+
+            <!-- Kotak informasi dosis -->
+    <div id="pake" class="max-w-3xl mx-auto bg-white/10 backdrop-blur-sm rounded-3xl p-8 slide-right">
+      <h3 class="text-3xl font-bold mb-6 text-center">
+        PIL AJAIB BIO SYAM - SOLUSINYA
+      </h3>
+      <div class="space-y-4">
+        <div class="flex items-start">
+          <span class="text-yellow-300 text-2xl mr-3">★</span>
+          <p class="text-lg"><strong>Untuk menjaga kesehatan:</strong> 2 pil</p>
+        </div>
+        <div class="flex items-start">
+          <span class="text-yellow-300 text-2xl mr-3">★</span>
+          <p class="text-lg"><strong>Untuk penyakit ringan:</strong> 3 pil sebelum tidur</p>
+        </div>
+        <div class="flex items-start">
+          <span class="text-yellow-300 text-2xl mr-3">★</span>
+          <p class="text-lg"><strong>Untuk keluhan berat:</strong> 3 pagi sebelum sarapan, 3 malam sebelum tidur</p>
+        </div>
+      </div>
+      <p class="mt-6 text-center text-lg italic">
+        Sayangi tubuh anda. Karena tubuh adalah pemberian dari ALLAH. Berikan yang terbaik, jangan disia-siakan hidup anda.
+      </p>
+      <p class="mt-4 text-center text-xl font-bold">
+        PIL AJAIB BIO SYAM PT. SSI25: Produk terbaik, Khasiat nyata, reaksi cepat.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="section3" class="py-20 bg-white">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-16 fade-in">
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+        Testimoni <span class="gradient-text">Pengguna</span>
+      </h2>
+      <p class="text-xl text-gray-600">Apa kata mereka tentang Bio Syam?</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <!-- Testimoni 1 -->
+      <div class="card bg-gray-50 p-6 rounded-2xl shadow-lg scale-in text-center">
+        <img src="image/pria.png" 
+             alt="Foto Bapak Ahmad" 
+             class="w-24 h-24 mx-auto rounded-full mb-4 object-cover border-4 border-green-500 shadow-md">
+        <p class="text-gray-700 mb-4">"Alhamdulillah, setelah rutin konsumsi Bio Syam, asam urat saya jauh membaik. Terima kasih!"</p>
+        <p class="font-semibold text-green-600">- Bapak Ahmad, 64 tahun</p>
+      </div>
+
+      <!-- Testimoni 2 -->
+      <div class="card bg-gray-50 p-6 rounded-2xl shadow-lg scale-in text-center">
+        <img src="image/wanita.png" 
+             alt="Foto Ibu Siti" 
+             class="w-24 h-24 mx-auto rounded-full mb-4 object-cover border-4 border-green-500 shadow-md">
+        <p class="text-gray-700 mb-4">"Saya yang sering pegal-pegal dan nyeri sendi, sekarang sudah merasa lebih ringan. Luar biasa!"</p>
+        <p class="font-semibold text-green-600">- Ibu Siti, 58 tahun</p>
+      </div>
+
+      <!-- Testimoni 3 -->
+      <div class="card bg-gray-50 p-6 rounded-2xl shadow-lg scale-in text-center">
+        <img src="image/pria2.png" 
+             alt="Foto Bapak Joko" 
+             class="w-24 h-24 mx-auto rounded-full mb-4 object-cover border-4 border-green-500 shadow-md">
+        <p class="text-gray-700 mb-4">"Diabetes saya terkontrol lebih baik sejak konsumsi Bio Syam. Sangat membantu!"</p>
+        <p class="font-semibold text-green-600">- Bapak Joko, 67 tahun</p>
+      </div>
+    </div>
+
+
+
+            <div class="text-center mt-12 fade-in">
+                <p class="text-lg text-gray-600 mb-6">Lihat lebih banyak testimoni di YouTube kami</p>
+                <a href="https://www.youtube.com" target="_blank" class="btn-primary text-white px-8 py-4 rounded-full font-semibold inline-flex items-center gap-2">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                        <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+                    </svg>
+                    Tonton Video Testimoni
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Hubungi Kami -->
+    <section id="section4" class="py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Hubungi <span class="text-green-400">Kami</span></h2>
+                <p class="text-xl text-gray-300">Siap melayani Anda dengan sepenuh hati</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="card bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 slide-left">
+                        <div class="bg-green-600 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">WhatsApp</h3>
+                        <p class="text-gray-300 mb-6">Hubungi kami melalui WhatsApp untuk konsultasi dan pemesanan</p>
+                        <a href="https://wa.me/082164372980?text=Halo%20saya%20ingin%20pesan%20Coffee%20MOMI%20promo%2050%%20nya!"
+						target="_blank"
+						class="inline-block bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:from-green-600 hover:to-green-700 transform hover:scale-105 transition shadow-lg">
+						Chat Via WA!
+							</a>
+                    </div>
+
+                    
+                </div>
+
+                <div class="mt-12 text-center bg-gradient-to-r from-green-600 to-emerald-600 p-8 rounded-2xl scale-in">
+                    <h3 class="text-3xl font-bold mb-4">Awas Jangan Salah Pilih Produk!</h3>
+                    <p class="text-xl mb-6">Pilih produk <strong>Pil Ajaib BIO SYAM</strong> yang asli dan terpercaya</p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <div class="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full">
+                            <p class="font-semibold">✓ Produk Terbaik</p>
+                        </div>
+                        <div class="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full">
+                            <p class="font-semibold">✓ Khasiat Nyata</p>
+                        </div>
+                        <div class="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full">
+                            <p class="font-semibold">✓ Reaksi Cepat</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-2xl font-bold gradient-text mb-4">BIO SYAM</h4>
+                    <p class="text-sm">Pil Hitam Ajaib untuk kesehatan Anda dan keluarga</p>
+                </div>
+                <div>
+                    <h5 class="font-semibold mb-4 text-white">Produk</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#section1" class="hover:text-green-400 transition-colors">Tentang Bio Syam</a></li>
+                        <li><a href="#section2" class="hover:text-green-400 transition-colors">Manfaat</a></li>
+                        <li><a href="#section3" class="hover:text-green-400 transition-colors">Testimoni</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-semibold mb-4 text-white">Informasi</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#pake" class="hover:text-green-400 transition-colors">Cara Konsumsi</a></li>
+                        
+                    </ul>
+                </div>
+                
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm">
+                <p>&copy; 2025 Bio Syam PT. SSI25. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.fade-in, .slide-left, .slide-right, .scale-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile menu toggle
+        
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+
+
+
+        // Navbar scroll effect
+        let lastScroll = 0;
+        const nav = document.querySelector('nav');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                nav.classList.add('shadow-xl');
+            } else {
+                nav.classList.remove('shadow-xl');
+            }
+            
+            lastScroll = currentScroll;
+        });
+		 // Hitung mundur 1 jam (3600 detik)
+  function startCountdown() {
+    const savedTime = localStorage.getItem("promoEndTime");
+    let endTime;
+
+    if (savedTime && new Date(savedTime) > new Date()) {
+      endTime = new Date(savedTime);
+    } else {
+      endTime = new Date(new Date().getTime() + 60 * 60 * 1000);
+      localStorage.setItem("promoEndTime", endTime);
+    }
+
+    const countdownEl = document.getElementById("countdown");
+
+    const timer = setInterval(() => {
+      const now = new Date();
+      const diff = endTime - now;
+
+      if (diff <= 0) {
+        clearInterval(timer);
+        countdownEl.textContent = "Waktu promo telah berakhir 😢";
+        return;
+      }
+
+      const minutes = Math.floor((diff / 1000 / 60) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+      countdownEl.textContent = `${minutes} menit ${seconds} detik tersisa`;
+    }, 1000);
+  }
+
+  startCountdown();
+    </script>
+</body>
+</html>
