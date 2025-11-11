@@ -211,9 +211,9 @@
       <img src="image/WhatsApp Image 2025-11-07 at 15.22.32 (1).jpeg"
            alt="Komposisi Bio Syam"
            class="w-full rounded-3xl shadow-2xl object-cover">
-
-      <!-- Video testimoni autoplay + kontrol + suara -->
-      <video id="videoTesti" controls autoplay muted loop playsinline poster="thumbnail.jpg"
+		   
+<!-- Video testimoni autoplay + kontrol + suara -->
+<video id="videoTesti" controls autoplay muted loop playsinline poster="thumbnail.jpg"
        class="w-full rounded-3xl shadow-2xl object-cover">
   <source src="vid/pil.mp4" type="video/mp4">
   Browser Anda tidak mendukung pemutaran video.
@@ -707,25 +707,17 @@
       countdownEl.textContent = `${minutes} menit ${seconds} detik tersisa`;
     }, 1000);
   }
-
-  startCountdown();
-    window.addEventListener("load", () => {
+window.addEventListener("load", () => {
     const v = document.getElementById("videoTesti");
+    if (!v) return;
 
-    // pastikan autoplay jalan (dengan mute dulu)
-    const startPlay = v.play();
-    if (startPlay !== undefined) {
-      startPlay.then(() => {
-        // setelah 1 detik, coba nyalakan suara pelan
-        setTimeout(() => {
-          v.muted = false;
-          v.volume = 0.4; // volume tidak keras
-        }, 1000);
-      }).catch(() => {
-        console.log("Autoplay dengan suara masih diblokir, user harus interaksi dulu.");
-      });
-    }
+    // Pastikan autoplay dijalankan dalam mode mute (pasti berfungsi di semua browser)
+    v.muted = true;
+    v.play().catch(() => {
+      console.log("Autoplay dengan mute gagal, coba refresh halaman.");
+    });
   });
+
     </script>
 
 </body>
