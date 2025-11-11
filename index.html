@@ -190,8 +190,7 @@
       <p class="text-xl text-gray-600">
         Produk Unggulan dengan Segudang Manfaat Kesehatan
       </p>
-    </div>
-<!-- Bagian deskripsi + gambar + video berdampingan -->
+    </div><!-- Bagian deskripsi + gambar + video berdampingan -->
 <div class="grid md:grid-cols-2 gap-10 items-center mb-16">
   <!-- Kiri: teks deskripsi -->
   <div class="slide-left">
@@ -213,12 +212,12 @@
            alt="Komposisi Bio Syam"
            class="w-full rounded-3xl shadow-2xl object-cover">
 
-      <!-- Video testimoni autoplay tanpa suara -->
-      <video autoplay muted loop playsinline poster="thumbnail.jpg"
-             class="w-full rounded-3xl shadow-2xl object-cover">
-        <source src="vid/pil.mp4" type="video/mp4">
-        Browser Anda tidak mendukung pemutaran video.
-      </video>
+      <!-- Video testimoni autoplay + kontrol + suara -->
+      <video id="videoTesti" controls autoplay muted loop playsinline poster="thumbnail.jpg"
+       class="w-full rounded-3xl shadow-2xl object-cover">
+  <source src="vid/pil.mp4" type="video/mp4">
+  Browser Anda tidak mendukung pemutaran video.
+</video>
     </div>
     <p class="text-center text-gray-600 mt-6">Lihat lebih banyak testimoni pelanggan kami</p>
   </div>
@@ -710,7 +709,25 @@
   }
 
   startCountdown();
+    window.addEventListener("load", () => {
+    const v = document.getElementById("videoTesti");
+
+    // pastikan autoplay jalan (dengan mute dulu)
+    const startPlay = v.play();
+    if (startPlay !== undefined) {
+      startPlay.then(() => {
+        // setelah 1 detik, coba nyalakan suara pelan
+        setTimeout(() => {
+          v.muted = false;
+          v.volume = 0.4; // volume tidak keras
+        }, 1000);
+      }).catch(() => {
+        console.log("Autoplay dengan suara masih diblokir, user harus interaksi dulu.");
+      });
+    }
+  });
     </script>
+
 </body>
 
 </html>
